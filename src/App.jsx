@@ -110,7 +110,7 @@ function App() {
                       />
                       <div className='task-content'>
                         <h2 className="task-title">{task.title}</h2>
-                        <span className="task-member">{task.member}</span>
+                        <a href={`https://github.com/${task.member}`} target='_blank'><span className="task-member">{task.member}</span></a>
                         <span className="task-category">{task.category}</span>
                         <span className={`task-${task.status}`}>{task.status}</span>
                       </div>
@@ -127,9 +127,9 @@ function App() {
 
 
           </div>
-        </section>
+        </section >
 
-      </div>
+      </div >
 
       <footer className='footer-main'>
         <p>
