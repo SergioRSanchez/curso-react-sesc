@@ -128,16 +128,23 @@ input, select {
 .btn-register {
   margin-top: 15px;
   color: #FFFFFF;
+  transition: all 0.3s;
 }
 
 .btn-register:hover {
   background-color: #70c4fc;
 }
 
+.btn-register:disabled {
+  background-color: #c9c9c9;
+  cursor: not-allowed;
+}
+
 .btn-start {
   color: #00d8be;
   border: solid 1.5px #00d8be;
   background-color: transparent;
+  transition: all 0.3s;
 }
 
 .btn-start:hover {
@@ -149,6 +156,7 @@ input, select {
   color: #302675;
   border: solid 1.5px #302675;
   background-color: transparent;
+  transition: all 0.3s;
 }
 
 .btn-close:hover {
@@ -161,6 +169,7 @@ input, select {
   color: #d14f6b;
   border: solid 1.5px #d14f6b;
   background-color: transparent;
+  transition: all 0.3s;
 }
 
 .btn-delete:hover {

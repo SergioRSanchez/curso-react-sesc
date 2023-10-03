@@ -31,6 +31,30 @@ function App() {
     setMember('')
   }
 
+  function handleStartTask(id) {
+    setTasks(tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, status: "doing" }
+      } else {
+        return task
+      }
+    }))
+  }
+
+  function handleFinishTask(id) {
+    setTasks(tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, status: "done" }
+      } else {
+        return task
+      }
+    }))
+  }
+
+  function handleDeleteTask(id) {
+    setTasks(tasks.filter(task => task.id !== id))
+  }
+
   return (
     <>
       <div className="app">
@@ -86,7 +110,7 @@ function App() {
                 }
               </select>
 
-              <button type="submit" className='btn-register'>Cadastrar</button>
+              <button type="submit" className='btn-register' disabled={!title || !category || !member}>Cadastrar</button>
             </form>
 
           </div>
@@ -115,9 +139,9 @@ function App() {
                         <span className={`task-${task.status}`}>{task.status}</span>
                       </div>
                       <div className="task-actions">
-                        <button className="btn-start">Iniciar</button>
-                        <button className="btn-close">Finalizar</button>
-                        <button className="btn-delete">X</button>
+                        <button className="btn-start" onClick={() => handleStartTask(task.id)}>Iniciar</button>
+                        <button className="btn-close" onClick={() => handleFinishTask(task.id)}>Finalizar</button>
+                        <button className="btn-delete" onClick={() => handleDeleteTask(task.id)}>X</button>
                       </div>
                     </div>
                   </div>
