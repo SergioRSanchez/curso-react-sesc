@@ -10,23 +10,17 @@ function App() {
   const [tasks, setTasks] = useState(dataTask)
 
   return (
-    <>
-      <div className="app">
-
-        <TaskForm
-          tasks={tasks}
-          setTasks={setTasks}
-        />
-
-        <TasksList
-          tasks={tasks}
-          setTasks={setTasks}
-        />
-
-      </div>
-
+    <div className="app">
+      <TaskForm
+        tasks={tasks}
+        setTasks={setTasks}
+      />
+      <TasksList
+        tasks={tasks}
+        setTasks={setTasks}
+      />
       <Footer />
-    </>
+    </div>
   )
 }
 

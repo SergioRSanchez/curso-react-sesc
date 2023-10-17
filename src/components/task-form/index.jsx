@@ -24,7 +24,7 @@ export function TaskForm({ tasks, setTasks }) {
       return
     }
 
-    setTasks([...tasks, { id: tasks.length + 1, title, category, member, status: "todo" }])
+    setTasks([...tasks, { id: Math.floor(Math.random() * 10000), title, category, member, status: "todo" }])
     setTitle('')
     setCategory('')
     setMember('')

@@ -2,27 +2,25 @@ import './style.css'
 
 export function Task({ id, title, category, member, status, tasks, setTasks }) {
   function handleStartTask(id) {
-    setTasks(tasks.map(task => {
-      if (task.id === id) {
-        return { ...task, status: "doing" }
-      } else {
-        return task
-      }
-    }))
+    const newTasks = [...tasks]
+    newTasks.map(task => {
+      task.id === id ? (task.status = "doing") : task
+    })
+    setTasks(newTasks)
   }
 
   function handleFinishTask(id) {
-    setTasks(tasks.map(task => {
-      if (task.id === id) {
-        return { ...task, status: "done" }
-      } else {
-        return task
-      }
-    }))
+    const newTasks = [...tasks]
+    newTasks.map(task => {
+      task.id === id ? (task.status = 'done') : task
+    })
+    setTasks(newTasks)
   }
 
   function handleDeleteTask(id) {
-    setTasks(tasks.filter(task => task.id !== id))
+    const newTasks = [...tasks]
+    const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
+    setTasks(filteredTasks)
   }
 
   return (
