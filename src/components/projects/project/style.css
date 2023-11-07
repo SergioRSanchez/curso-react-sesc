@@ -1,0 +1,55 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.project-content {
+  width: 100%;
+  max-width: 330px;
+  padding: 10px;
+}
+
+.project-title {
+  font-weight: bold;
+}
+
+.project-description {
+  /* background-color: #c9c9c9; */
+  padding-right: 20px;
+  line-height: 1.25rem;
+}
+
+.project-done, .project-doing, .project-todo, .project-category, .project-member {
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #FFFFFF;
+  margin-right: 8px;
+}
+
+.project-done {
+  background-color: #4ee755;
+}
+
+.project-doing {
+  background-color: #ffbf48;
+}
+
+.project-todo, .btn-register {
+  background-color: #51b4f7;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 600px){
+  .project {
+    flex-direction: row;
+    text-align: start;
+  }
+}

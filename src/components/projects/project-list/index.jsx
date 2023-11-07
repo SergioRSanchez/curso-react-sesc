@@ -22,6 +22,7 @@ export function ProjectList() {
                 category={project.category}
                 member={project.member}
                 status={project.status}
+                description={project.description}
               // setTasks={setTasks}
               // tasks={tasks}
               />
