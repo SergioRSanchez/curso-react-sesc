@@ -1,4 +1,5 @@
 import { ProjectForm } from './project-form';
+import { ProjectList } from './project-list';
 
 function ProjectsPage() {
   return (
@@ -7,6 +8,8 @@ function ProjectsPage() {
 
       <div className="app">
         <ProjectForm />
+
+        <ProjectList />
       </div>
     </div>
   )

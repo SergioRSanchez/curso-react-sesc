@@ -11,7 +11,6 @@ export function ProjectForm({ addProject }) {
   const [teams] = useState(dataTeams);
   const [members] = useState(dataMembers);
   const [currentProject, setCurrentProject] = useState("");
-  const [currentTeam, setCurrentTeam] = useState("");
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentDescription, setCurrentDescription] = useState("");
   const [currentStartDate, setCurrentStartDate] = useState("");
@@ -19,36 +18,43 @@ export function ProjectForm({ addProject }) {
   const [currentEndDate, setCurrentEndDate] = useState("");
   const [currentClient, setCurrentClient] = useState("");
   const [currentStatus, setCurrentStatus] = useState("");
+  const [currentTeam, setCurrentTeam] = useState("");
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
       !currentProject ||
-      !currentTeam ||
       !currentTitle ||
       !currentDescription ||
       !currentStartDate ||
       !currentDeadline ||
       !currentEndDate ||
       !currentClient ||
-      !currentStatus
+      !currentStatus ||
+      !currentTeam
     ) {
       alert("Todos os campos são obrigatórios!");
       return;
     }
     addProject(currentProject,
-      currentTeam,
       currentTitle,
       currentDescription,
       currentStartDate,
       currentDeadline,
       currentEndDate,
       currentClient,
-      currentStatus);
+      currentStatus,
+      currentTeam);
     setCurrentProject("");
+    setCurrentTitle("");
+    setCurrentDescription("");
+    setCurrentStartDate("");
+    setCurrentDeadline("");
+    setCurrentEndDate("");
+    setCurrentClient("");
+    setCurrentStatus("");
     setCurrentTeam("");
-    setCurrentMember("");
     alert("Tarefa cadastrada com sucesso!");
   }
 
@@ -67,48 +73,92 @@ export function ProjectForm({ addProject }) {
             value={currentProject}
             onChange={
               (event) =>
-                setCurrentProject(event.target.value)
+                setCurrentTitle(event.target.value)
             }
           />
-          <label htmlFor='category'>Categoria</label>
+
+          <label htmlFor='description'>Descrição</label>
+          <input
+            type='text'
+            name='description'
+            id='description'
+            placeholder='Digite a descrição'
+            value={currentDescription}
+            onChange={
+              (event) =>
+                setCurrentDescription(event.target.value)
+            }
+          />
+
+          <label htmlFor='startDate'>Data de início</label>
+          <input
+            type='date'
+            name='startDate'
+            id='startDate'
+            value={currentStartDate}
+            onChange={
+              (event) =>
+                setCurrentStartDate(event.target.value)
+            }
+          />
+
+          <label htmlFor='deadline'>Prazo final</label>
+          <input
+            type='date'
+            name='deadline'
+            id='deadline'
+            value={currentDeadline}
+            onChange={
+              (event) =>
+                setCurrentDeadline(event.target.value)
+            }
+          />
+
+          <label htmlFor='endDate'>Data de término</label>
+          <input
+            type='date'
+            name='endDate'
+            id='endDate'
+            value={currentEndDate}
+            onChange={
+              (event) =>
+                setCurrentEndDate(event.target.value)
+            }
+          />
+
+          <label htmlFor='client'>Cliente</label>
+          <input
+            type='text'
+            name='client'
+            id='client'
+            value={currentClient}
+            placeholder='Insira nome do cliente'
+            onChange={
+              (event) =>
+                setCurrentClient(event.target.value)
+            }
+          />
+
+          <label htmlFor='team'>Time</label>
           <select
-            name='category'
-            id='category'
+            name='team'
+            id='team'
             value={currentTeam}
             onChange={
               (event) =>
                 setCurrentTeam(event.target.value)
             }
           >
-            <option value="">Selecione uma categoria</option>
-            {categories && categories.map((category => {
+            <option value="">Selecione um time</option>
+            {teams && teams.map((teams => {
               return (
-                <React.Fragment key={category.id}>
-                  <option value={category.title}>{category.title}</option>
+                <React.Fragment key={teams.id}>
+                  <option value={teams.name}>{teams.name}</option>
                 </React.Fragment>
               )
             }))}
           </select>
-          {/* <label htmlFor='member'>Membros</label>
-          <select
-            name='member'
-            id='member'
-            value={currentMember}
-            onChange={
-              (event) => {
-                setCurrentMember(event.target.value)
-              }
-            }
-          >
-            <option value="">Selecione um membro da equipe</option>
-            {members && members.map((member) => {
-              return (
-                <React.Fragment key={member.id}>
-                  <option value={member.profile}>{member.name}</option>
-                </React.Fragment>
-              )
-            })}
-          </select> */}
+
           <button className='btn-register' type='submit'>
             Cadastrar
           </button>
