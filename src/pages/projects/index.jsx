@@ -1,5 +1,4 @@
-import { ProjectForm } from './project-form';
-import { ProjectList } from './project-list';
+import { ProjectForm, ProjectList, Footer } from './../../components/index'
 
 function ProjectsPage() {
   return (
@@ -10,6 +9,8 @@ function ProjectsPage() {
         <ProjectForm />
 
         <ProjectList />
+
+        <Footer />
       </div>
     </div>
   )

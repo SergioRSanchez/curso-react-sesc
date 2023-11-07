@@ -1,6 +1,6 @@
 import './style.css'
 
-import { Task } from './../index.js'
+import { Task } from '../task'
 
 export function TasksList({ tasks, setTasks }) {
 

@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import './style.css'
 
-import dataCategories from '././../../data/data-categories.json'
-import dataMembers from '././../../data/data-members.json'
+import dataCategories from '../../../data/data-categories.json'
+import dataMembers from '../../../data/data-members.json'
 
 export function TaskForm({ tasks, setTasks }) {
 

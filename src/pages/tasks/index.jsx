@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import '../../App.css'
 
-// import dataTask from './data/data-tasks.json'
 import dataTask from './../../data/data-tasks.json'
 
-// import { TaskForm, TasksList, Footer } from './components/index.js'
 import { TaskForm, TasksList, Footer } from '../../components'
+
 
 function App() {
 
