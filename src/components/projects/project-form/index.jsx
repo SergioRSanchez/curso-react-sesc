@@ -75,7 +75,7 @@ export function ProjectForm({ addProject }) {
         <hr />
         <form onSubmit={handleSubmit}>
 
-           {/* <label htmlFor='title'>Título</label>
+          {/* <label htmlFor='title'>Título</label>
           <input
             type='text'
             name='title'
@@ -117,7 +117,7 @@ export function ProjectForm({ addProject }) {
             <DatePicker onChange={(newValue) => setCurrentStartDate(newValue)} value={currentStartDate} label="Data de início" />
           </LocalizationProvider>
 
-          {/* <label htmlFor='deadline'>Prazo final</label>
+          {/* <label htmlFor='deadline'>Prazo final</label> teste
           <input
             type='date'
             name='deadline'
