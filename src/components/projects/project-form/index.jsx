@@ -126,6 +126,7 @@ export function ProjectForm({ addProject }) {
             onChange={
               (event) =>
                 setCurrentDeadline(event.target.value)
+                teste
             }
           /> */}
           <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
