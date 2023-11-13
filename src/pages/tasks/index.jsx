@@ -3,7 +3,7 @@ import '../../App.css'
 
 import dataTask from './../../data/data-tasks.json'
 
-import { TaskForm, TasksList, Footer } from '../../components'
+import { TaskForm, TasksList, Footer, Header } from '../../components'
 
 
 function App() {
@@ -12,14 +12,18 @@ function App() {
 
   return (
     <div className="app">
+      <Header />
+
       <TaskForm
         tasks={tasks}
         setTasks={setTasks}
       />
+
       <TasksList
         tasks={tasks}
         setTasks={setTasks}
       />
+
       <Footer />
     </div>
   )
