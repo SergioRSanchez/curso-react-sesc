@@ -75,7 +75,7 @@ export function ProjectForm({ addProject }) {
         <hr />
         <form onSubmit={handleSubmit}>
 
-          {/* <label htmlFor='title'>Título</label>
+           {/* <label htmlFor='title'>Título</label>
           <input
             type='text'
             name='title'
