@@ -21,9 +21,9 @@ export function ProjectForm({ addProject }) {
   const [currentProject, setCurrentProject] = useState("");
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentDescription, setCurrentDescription] = useState("");
-  const [currentStartDate, setCurrentStartDate] = useState("");
-  const [currentDeadline, setCurrentDeadline] = useState("");
-  const [currentEndDate, setCurrentEndDate] = useState("");
+  const [currentStartDate, setCurrentStartDate] = useState(null);
+  const [currentDeadline, setCurrentDeadline] = useState(null);
+  const [currentEndDate, setCurrentEndDate] = useState(null);
   const [currentClient, setCurrentClient] = useState("");
   const [currentStatus, setCurrentStatus] = useState("");
   const [currentTeam, setCurrentTeam] = useState("");
@@ -75,13 +75,25 @@ export function ProjectForm({ addProject }) {
         <hr />
         <form onSubmit={handleSubmit}>
 
-          <label htmlFor='title'>Título</label>
+           {/* <label htmlFor='title'>Título</label>
           <input
             type='text'
             name='title'
             id='title'
             placeholder='Digite o título'
             value={currentProject}
+            onChange={
+              (event) =>
+                setCurrentTitle(event.target.value)
+            }
+          /> */}
+
+          <TextField
+            id='outline-basic'
+            fullWidth
+            label='Digite o título'
+            variant='outlined'
+            value={currentTitle}
             onChange={
               (event) =>
                 setCurrentTitle(event.target.value)
@@ -100,12 +112,12 @@ export function ProjectForm({ addProject }) {
             }
           />
 
-          <label htmlFor='startDate'>Data de início</label>
+          {/* <label htmlFor='startDate'>Data de início</label> */}
           <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
-            <DatePicker />
+            <DatePicker onChange={(newValue) => setCurrentStartDate(newValue)} value={currentStartDate} label="Data de início" />
           </LocalizationProvider>
 
-          <label htmlFor='deadline'>Prazo final</label>
+          {/* <label htmlFor='deadline'>Prazo final</label>
           <input
             type='date'
             name='deadline'
@@ -114,10 +126,14 @@ export function ProjectForm({ addProject }) {
             onChange={
               (event) =>
                 setCurrentDeadline(event.target.value)
+                teste
             }
-          />
+          /> */}
+          <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
+            <DatePicker onChange={(newValue) => setCurrentDeadline(newValue)} value={currentDeadline} label="Prazo final" />
+          </LocalizationProvider>
 
-          <label htmlFor='endDate'>Data de término</label>
+          {/* <label htmlFor='endDate'>Data de término</label>
           <input
             type='date'
             name='endDate'
@@ -127,7 +143,10 @@ export function ProjectForm({ addProject }) {
               (event) =>
                 setCurrentEndDate(event.target.value)
             }
-          />
+          /> */}
+          <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
+            <DatePicker onChange={(newValue) => setCurrentEndDate(newValue)} value={currentEndDate} label="Data de término" />
+          </LocalizationProvider>
 
           <TextField
             id='outline-basic'
