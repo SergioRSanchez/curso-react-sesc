@@ -47,6 +47,11 @@ a {
   text-decoration: none;
 }
 
+
+.MuiOutlinedInput-notchedOutline legend {
+  font-size: 15.8px;
+}
+
 @media screen and (min-width: 600px){
   .project {
     flex-direction: row;

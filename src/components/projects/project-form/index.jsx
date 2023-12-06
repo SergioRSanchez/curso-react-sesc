@@ -63,6 +63,7 @@ export function ProjectForm({ addProject }) {
         <Box
           sx={{
             '& .MuiTextField-root': { marginY: 1 },
+            '.MuiOutlinedInput-notchedOutline legend': { fontSize: 16 }
           }}
         >
           <h1>Cadastrar projeto</h1>

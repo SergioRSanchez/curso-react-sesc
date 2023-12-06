@@ -6,10 +6,6 @@
   gap: 1rem;
 }
 
-.MuiOutlinedInput-notchedOutline legend {
-  font-size: 15.8px;
-}
-
 @media screen and (min-width: 600px){
   .date-picker {
     flex-direction: row;
