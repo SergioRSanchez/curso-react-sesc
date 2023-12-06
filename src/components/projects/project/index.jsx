@@ -1,28 +1,86 @@
+import { useState } from 'react';
+
+import { Grid, Typography } from '@mui/material'
+
+import dataTeams from '../../../data/data-team.json'
+
 import './style.css'
 
-export function Project({ id, title, description, start, deadline, endDate, client, status, idTeam }) {
-  return (
-    <div key={id}>
-      <hr />
+export function Project({ id, title, description, startDate, deadline, endDate, client, status, idTeam, deleteProject, startProject, closeProject }) {
+  const [teams] = useState(dataTeams);
 
-      <div className="project">
-        {/* <img
-          src={`https://github.com/${member}.png`}
-          alt="member image"
-          className='task-img-member'
-        /> */}
-        <div className='project-content'>
-          <h2 className="project-title">{title}</h2>
-          {/* <a href={`https://github.com/${member}`} target='_blank'><span className="task-member">{member}</span></a> */}
-          <span className="project-description">{description}</span>
-          <span className={`project-${status}`}>{status}</span>
-        </div>
-        <div className="task-actions">
-          <button className="btn-start" onClick={() => handleStartTask(id)}>Iniciar</button>
-          <button className="btn-close" onClick={() => handleFinishTask(id)}>Finalizar</button>
-          <button className="btn-delete" onClick={() => handleDeleteTask(id)}>X</button>
-        </div>
-      </div>
-    </div>
+  const getNameTeamById = (id) => {
+    const filteredTeam = teams.find((team) => team.id === id)
+    return filteredTeam.name;
+  }
+
+  return (
+    <>
+      <Grid container>
+        <Grid item xs={12} paddingBottom={2}>
+          <Typography variant='h5' marginRight={2} display="inline">
+            {title}
+          </Typography>
+          <Typography variant='body2' component="span" className={`task-${status}`}>
+            {status}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant='body2'>
+            {description}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} paddingTop={2}>
+          <Grid container>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Cliente
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {client}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Equipe
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {getNameTeamById(idTeam)}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Previsão
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {deadline}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Início
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {startDate}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant='body2' fontStyle="oblique">
+                Término
+              </Typography>
+              <Typography variant='body2' fontWeight="bold">
+                {endDate}
+              </Typography>
+            </Grid>
+            <Grid item xs={2} display="flex" justifyContent="flex-end">
+              <div className='task-actions'>
+                <button className='btn-delete' onClick={() => deleteProject(id)}>x</button>
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <hr />
+    </>
   )
 }

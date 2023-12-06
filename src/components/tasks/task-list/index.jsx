@@ -2,7 +2,7 @@ import './style.css'
 
 import { Task } from '../task'
 
-export function TasksList({ tasks, setTasks }) {
+export function TasksList({ tasks, startTask, closeTask, deleteTask }) {
 
   return (
     <section className="section-main">
@@ -16,11 +16,13 @@ export function TasksList({ tasks, setTasks }) {
                 key={task.id}
                 id={task.id}
                 title={task.title}
-                category={task.category}
                 member={task.member}
+                category={task.category}
+                idProject={task.idProject}
                 status={task.status}
-                setTasks={setTasks}
-                tasks={tasks}
+                startTask={startTask}
+                closeTask={closeTask}
+                deleteTask={deleteTask}
               />
             )
           })

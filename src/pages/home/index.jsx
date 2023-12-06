@@ -1,10 +1,15 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+// import { TaskContext } from '../../context/task-context';
+
 import { Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
 import { Footer } from './../../components/index'
-import { Link } from 'react-router-dom';
 
 import './style.css'
 
 function HomePage() {
+
   return (
     <div className='app'>
       <Container

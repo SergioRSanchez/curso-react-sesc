@@ -1,33 +1,36 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
-import './style.css'
+import { ProjectContext } from '../../../context/project-context'
 
 import dataCategories from '../../../data/data-categories.json'
 import dataMembers from '../../../data/data-members.json'
 
-export function TaskForm({ tasks, setTasks }) {
+import './style.css'
 
-  const [categories] = useState(dataCategories)
-  const [members] = useState(dataMembers)
+export function TaskForm({ addTask }) {
+
+  const { projects } = useContext(ProjectContext)
+
+  const [categories] = useState(dataCategories);
+  const [members] = useState(dataMembers);
+  const [currentTask, setCurrentTask] = useState("");
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [currentMember, setCurrentMember] = useState("");
+  const [currentProject, setCurrentProject] = useState("")
 
 
-  const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
-  const [member, setMember] = useState('')
-
-
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    if (!title || !category || !member) {
-      alert('Preencha todos os campos')
-      return
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!currentTask || !currentCategory || !currentMember || !currentProject) {
+      alert("Todos os campos são obrigatórios!");
+      return;
     }
-
-    setTasks([...tasks, { id: Math.floor(Math.random() * 10000), title, category, member, status: "todo" }])
-    setTitle('')
-    setCategory('')
-    setMember('')
+    addTask(currentTask, currentCategory, currentMember, currentProject);
+    setCurrentTask("");
+    setCurrentCategory("");
+    setCurrentMember("");
+    setCurrentProject("")
+    alert("Tarefa cadastrada com sucesso!");
   }
 
   return (
@@ -42,8 +45,8 @@ export function TaskForm({ tasks, setTasks }) {
             type="text"
             id='title'
             name='title'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={currentTask}
+            onChange={(e) => setCurrentTask(e.target.value)}
             placeholder='Digite o título da tarefa'
           />
 
@@ -52,8 +55,8 @@ export function TaskForm({ tasks, setTasks }) {
           <select
             name="category"
             id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={currentCategory}
+            onChange={(e) => setCurrentCategory(e.target.value)}
           >
             <option value="">Selecione uma categoria</option>
             {
@@ -69,8 +72,8 @@ export function TaskForm({ tasks, setTasks }) {
           <select
             name="member"
             id="member"
-            value={member}
-            onChange={(e) => setMember(e.target.value)}
+            value={currentMember}
+            onChange={(e) => setCurrentMember(e.target.value)}
           >
             <option value="">Selecione um membro da equipe</option>
             {
@@ -82,7 +85,24 @@ export function TaskForm({ tasks, setTasks }) {
             }
           </select>
 
-          <button type="submit" className='btn-register' disabled={!title || !category || !member}>Cadastrar</button>
+          <label htmlFor="project">Projeto</label>
+          <select
+            name="project"
+            id="project"
+            value={currentProject}
+            onChange={(e) => setCurrentProject(Number(e.target.value))}
+          >
+            <option value="">Selecione o projeto</option>
+            {
+              projects && projects.map((project) => {
+                return (
+                  <option key={project.id} value={project.id}>{project.title}</option>
+                )
+              })
+            }
+          </select>
+
+          <button type="submit" className='btn-register' disabled={!currentTask || !currentCategory || !currentMember || !currentProject}>Cadastrar</button>
         </form>
 
       </div>

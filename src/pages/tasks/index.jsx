@@ -1,27 +1,32 @@
-import { useState } from 'react'
-import '../../App.css'
+import { useContext } from 'react'
 
-import dataTask from './../../data/data-tasks.json'
+import { TaskContext } from '../../context/task-context'
 
 import { TaskForm, TasksList, Footer, Header } from '../../components'
 
+import '../../App.css'
 
 function App() {
 
-  const [tasks, setTasks] = useState(dataTask)
+  const {
+    tasks,
+    addTask,
+    startTask,
+    closeTask,
+    deleteTask
+  } = useContext(TaskContext)
 
   return (
     <div className="app">
       <Header />
 
-      <TaskForm
-        tasks={tasks}
-        setTasks={setTasks}
-      />
+      <TaskForm addTask={addTask} />
 
       <TasksList
         tasks={tasks}
-        setTasks={setTasks}
+        startTask={startTask}
+        closeTask={closeTask}
+        deleteTask={deleteTask}
       />
 
       <Footer />

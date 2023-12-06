@@ -1,11 +1,6 @@
-import { useState } from 'react';
-
 import { Project } from '../project';
 
-import dataProjects from '../../../data/data-projects.json';
-
-export function ProjectList() {
-  const [projects] = useState(dataProjects);
+export function ProjectList({ projects, deleteProject, startProject, closeProject }) {
 
   return (
     <section className="section-main">
@@ -19,12 +14,16 @@ export function ProjectList() {
                 key={project.id}
                 id={project.id}
                 title={project.title}
-                category={project.category}
-                member={project.member}
-                status={project.status}
                 description={project.description}
-              // setTasks={setTasks}
-              // tasks={tasks}
+                startDate={project.startDate}
+                deadline={project.deadline}
+                endDate={project.endDate}
+                client={project.client}
+                idTeam={project.idTeam}
+                status={project.status}
+                deleteProject={deleteProject}
+                startProject={startProject}
+                closeProject={closeProject}
               />
             )
           })

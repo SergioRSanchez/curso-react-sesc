@@ -1,26 +1,28 @@
+import { useContext } from 'react'
+import { ProjectContext } from '../../../context/project-context'
+
+import { Typography } from '@mui/material'
+
 import './style.css'
 
-export function Task({ id, title, category, member, status, tasks, setTasks }) {
-  function handleStartTask(id) {
-    const newTasks = [...tasks]
-    newTasks.map(task => {
-      task.id === id ? (task.status = "doing") : task
-    })
-    setTasks(newTasks)
-  }
+export function Task({
+  id,
+  title,
+  category,
+  member,
+  idProject,
+  status,
+  startTask,
+  closeTask,
+  deleteTask
+}) {
 
-  function handleFinishTask(id) {
-    const newTasks = [...tasks]
-    newTasks.map(task => {
-      task.id === id ? (task.status = 'done') : task
-    })
-    setTasks(newTasks)
-  }
+  const { projects } = useContext(ProjectContext)
 
-  function handleDeleteTask(id) {
-    const newTasks = [...tasks]
-    const filteredTasks = newTasks.filter(task => task.id !== id ? task : null)
-    setTasks(filteredTasks)
+  const getTitleProjectById = (idProject) => {
+    const filteredProject = projects.find((currentProject) => currentProject.id === idProject)
+
+    return filteredProject ? filteredProject.title : 'Projeto não encontrado';
   }
 
   return (
@@ -35,14 +37,19 @@ export function Task({ id, title, category, member, status, tasks, setTasks }) {
         />
         <div className='task-content'>
           <h2 className="task-title">{title}</h2>
+          <Typography
+            variant='body2'
+          >
+            {getTitleProjectById(idProject)}
+          </Typography>
           <a href={`https://github.com/${member}`} target='_blank'><span className="task-member">{member}</span></a>
           <span className="task-category">{category}</span>
           <span className={`task-${status}`}>{status}</span>
         </div>
         <div className="task-actions">
-          <button className="btn-start" onClick={() => handleStartTask(id)}>Iniciar</button>
-          <button className="btn-close" onClick={() => handleFinishTask(id)}>Finalizar</button>
-          <button className="btn-delete" onClick={() => handleDeleteTask(id)}>X</button>
+          <button className="btn-start" onClick={() => startTask(id)}>Iniciar</button>
+          <button className="btn-close" onClick={() => closeTask(id)}>Finalizar</button>
+          <button className="btn-delete" onClick={() => deleteTask(id)}>X</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import { TaskProvider } from './context/task-context'
+import { ProjectProvider } from './context/project-context'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -25,6 +28,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <TaskProvider>
+      <ProjectProvider>
+        <RouterProvider router={router} />
+      </ProjectProvider>
+    </TaskProvider>
   </React.StrictMode>,
 )
