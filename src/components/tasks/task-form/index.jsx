@@ -1,22 +1,19 @@
 import { useState, useContext } from 'react'
 
 import { ProjectContext } from '../../../context/project-context'
-
-import dataCategories from '../../../data/data-categories.json'
-import dataMembers from '../../../data/data-members.json'
+import { TaskContext } from '../../../context/task-context';
 
 import './style.css'
 
 export function TaskForm({ addTask }) {
 
-  const { projects } = useContext(ProjectContext)
+  const { projects } = useContext(ProjectContext);
+  const { categories, members } = useContext(TaskContext);
 
-  const [categories] = useState(dataCategories);
-  const [members] = useState(dataMembers);
   const [currentTask, setCurrentTask] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentMember, setCurrentMember] = useState("");
-  const [currentProject, setCurrentProject] = useState("")
+  const [currentProject, setCurrentProject] = useState("");
 
 
   const handleSubmit = (event) => {
@@ -62,7 +59,7 @@ export function TaskForm({ addTask }) {
             {
               categories && categories.map((category) => {
                 return (
-                  <option key={category.id} value={category.title}>{category.title}</option>
+                  <option key={category.id} value={category.id}>{category.attributes.title}</option>
                 )
               })
             }
@@ -79,7 +76,7 @@ export function TaskForm({ addTask }) {
             {
               members && members.map((member) => {
                 return (
-                  <option key={member.id} value={member.profile}>{member.name}</option>
+                  <option key={member.id} value={member.id}>{member.attributes.name}</option>
                 )
               })
             }

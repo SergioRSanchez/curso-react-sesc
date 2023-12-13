@@ -1,5 +1,7 @@
 import { useContext } from 'react'
+
 import { ProjectContext } from '../../../context/project-context'
+import { TaskContext } from '../../../context/task-context';
 
 import { Typography } from '@mui/material'
 
@@ -8,8 +10,8 @@ import './style.css'
 export function Task({
   id,
   title,
-  category,
-  member,
+  idMember,
+  idCategory,
   idProject,
   status,
   startTask,
@@ -18,11 +20,23 @@ export function Task({
 }) {
 
   const { projects } = useContext(ProjectContext)
+  const { categories, members } = useContext(TaskContext);
 
-  const getTitleProjectById = (idProject) => {
+  const getTitleProjectById = () => {
     const filteredProject = projects.find((currentProject) => currentProject.id === idProject)
-
-    return filteredProject ? filteredProject.title : 'Projeto não encontrado';
+    return filteredProject?.attributes.title ? filteredProject?.attributes.title : "Erro";
+  }
+  const getMemberNameById = () => {
+    const filteredMember = members.find((currentMember) => currentMember.id === idMember)
+    return filteredMember?.attributes.name ? filteredMember?.attributes.name : "Erro";
+  }
+  const getMemberProfileById = () => {
+    const filteredMember = members.find((currentMember) => currentMember.id === idMember)
+    return filteredMember?.attributes.profile ? filteredMember?.attributes.profile : "Erro";
+  }
+  const getCategoryNameById = () => {
+    const filteredCategory = categories.find((currentCategory) => currentCategory.id === idCategory)
+    return filteredCategory?.attributes.title ? filteredCategory?.attributes.title : "Erro";
   }
 
   return (
@@ -31,7 +45,7 @@ export function Task({
 
       <div className="task">
         <img
-          src={`https://github.com/${member}.png`}
+          src={`https://github.com/${getMemberProfileById(idMember)}.png`}
           alt="member image"
           className='task-img-member'
         />
@@ -42,8 +56,8 @@ export function Task({
           >
             {getTitleProjectById(idProject)}
           </Typography>
-          <a href={`https://github.com/${member}`} target='_blank'><span className="task-member">{member}</span></a>
-          <span className="task-category">{category}</span>
+          <a href={`https://github.com/${idMember}`} target='_blank'><span className="task-member">{getMemberNameById(idMember)}</span></a>
+          <span className="task-category">{getCategoryNameById(idCategory)}</span>
           <span className={`task-${status}`}>{status}</span>
         </div>
         <div className="task-actions">
